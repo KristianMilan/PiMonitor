@@ -13,14 +13,6 @@ const options = {
 
 const reading = document.getElementById("reading");
 
-const startSSH = () => {
-	ssh.connect(options)
-		.then(() => {
-			checkTemperature(ssh);
-		})
-		.catch(err => console.error(err));
-};
-
 const checkTemperature = sshInstance => {
 	sshInstance
 		.execCommand("vcgencmd measure_temp")
@@ -46,3 +38,11 @@ const checkTemperature = sshInstance => {
 		})
 		.catch(err => console.error(err));
 };
+
+(startSSH = () => {
+	ssh.connect(options)
+		.then(() => {
+			checkTemperature(ssh);
+		})
+		.catch(err => console.error(err));
+})();
